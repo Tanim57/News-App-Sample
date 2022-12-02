@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.tanim.newsapp.core.newdetails.NewsDetailViewModel"/>
+
+        <import type="com.tanim.newsapp.utils.DateFormat"/>
+        <import type="com.tanim.newsapp.utils.DateFormationUtils"/>
+
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_banner"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="1.9:1"
+                app:layout_constraintTop_toTopOf="parent"
+                load_image="@{viewModel.article.urlToImage}"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/iv_banner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent=".9">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_source"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    app:text="@{viewModel.article.source.name}"
+                    android:textColor="@color/colorDefaultTextSecondary"/>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_source"
+                    android:layout_marginTop="@dimen/default_margin_top"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    app:text="@{viewModel.article.title}"/>
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_author_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_top"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                    app:text="@{`Author, ` + DateFormationUtils.INSTANCE.getStringFromDate(viewModel.article.publishedAt,DateFormat.DATE_FORMAT_MMM_dd_EEEE)}"
+                    android:textColor="@color/colorDefaultTextSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title"
+                    />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    app:text="@{viewModel.article.content}"
+                    android:lineSpacingExtra="@dimen/activity_default_margin"
+                    android:textColor="@color/colorDefaultTextSecondary"
+                    app:layout_constraintTop_toBottomOf="@id/tv_author_date"
+                    android:layout_marginBottom="@dimen/activity_default_margin"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+</layout>

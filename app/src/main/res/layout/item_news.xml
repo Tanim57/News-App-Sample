@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="article"
+            type="com.tanim.newsapp.data.news.Article" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/view_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginStart="@dimen/activity_default_margin"
+        android:layout_marginEnd="@dimen/activity_default_margin"
+        android:padding="@dimen/activity_default_margin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_thubnail"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1.25:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_empty_image"
+            load_image="@{article.urlToImage}"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_author"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_default_margin"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+            android:singleLine="true"
+            app:text="@{article.author}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_thubnail"
+            app:layout_constraintTop_toTopOf="@id/iv_thubnail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_default_margin"
+            android:lines="2"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            app:text="@{article.title}"
+            app:layout_constraintEnd_toEndOf="@id/tv_author"
+            app:layout_constraintStart_toStartOf="@id/tv_author"
+            app:layout_constraintTop_toBottomOf="@id/tv_author" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_read_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_default_margin_very_small"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:background="@drawable/ic_empty_image"
+            android:paddingStart="@dimen/activity_default_margin"
+            android:paddingEnd="@dimen/activity_default_margin"
+            android:text="@string/read_more"
+            app:layout_goneMarginTop="@dimen/activity_default_margin_very_small"
+            app:layout_constraintStart_toStartOf="@id/tv_author"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

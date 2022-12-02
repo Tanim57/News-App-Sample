@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.tanim.newsapp.core.login.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragnent_login">
+
+        <action android:id="@+id/action_navigate_home"
+            app:destination="@id/homeFragment"/>
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tanim.newsapp.core.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home"/>
+
+
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.tanim.newsapp.core.news.NewsFragment"
+        android:label="NewsFragment"
+        tools:layout="@layout/fragment_news">
+
+    </fragment>
+
+    <action app:destination="@id/newsDetailFragment"
+        android:id="@+id/action_navigate_news_detail"/>
+
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.tanim.newsapp.core.newdetails.NewsDetailFragment"
+        android:label="News Detail"
+        tools:layout="@layout/fragment_news_details">
+
+        <argument android:name="article"
+            app:argType="com.tanim.newsapp.data.news.Article"/>
+
+    </fragment>
+
+
+</navigation>
